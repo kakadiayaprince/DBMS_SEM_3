@@ -321,3 +321,285 @@ DROP COLUMN CITY
 
 --6. Change name of table student_detail to STUDENT_MASTER.
 EXEC SP_RENAME 'STUDENT_DETAIL', 'STUDENT_MASTER'
+
+
+-----DELETE, Truncate, Drop Operation
+
+
+--PART_A
+
+
+--1. Delete all the records of DEPOSIT_DETAIL table having amount greater than and equals to 4000. 
+DELETE FROM DEPOSITE_DETAIL
+WHERE AMOUNT>=4000
+
+
+--2. Delete all the accounts CHANDI BRANCH
+DELETE FROM DEPOSITE_DETAIL
+WHERE BNAME='CHANDI'
+
+
+--3. Delete all the accounts having account number (ANO) is greater than 105.
+DELETE FROM DEPOSITE_DETAIL
+WHERE ANO>105
+
+
+--4. Delete all the records of Deposit_Detail table. (Use Truncate)
+TRUNCATE TABLE DEPOSITE_DETAIL
+
+
+--5. Remove Deposit_Detail table. (Use Drop)
+DROP TABLE DEPOSITE_DETAIL
+
+
+--PART_B
+--CREATE TABLE EMPLOYEE_MASTER(
+--EMPNO INT,
+--EMPNAME VARCHAR(25),
+--JOININGDATE DATETIME,
+--SALARY DECIMAL (8,2),
+--CITY VARCHAR(20)
+--)
+
+
+
+--LAB_5
+
+CREATE TABLE STUDENT(
+STUID INT,
+FIRSTNAME VARCHAR(25),
+LASTNAME VARCHAR(25),
+WEBSITE VARCHAR(50),
+CITY VARCHAR(25),
+
+
+
+
+
+ADDRESS VARCHAR(100)
+)
+
+
+INSERT INTO STUDENT VALUES 
+(1011, 'Keyur','Patel', 'techonthenet.com', 'Rajkot', 'A-303 ''Vasant Kunj'',Rajkot'),
+(1022,'Hardik', 'Shah', 'digminecraft.com','Ahmedabad', '"Ram Krupa", Raiya Road'),
+(1033, 'Kajal', 'Trivedi', 'bigactivities.com', 'Baroda', 'Raj bhavan plot,neargarden'),
+(1044, 'Bhoomi','Gajera', 'checkyourmath.com', 'Ahmedabad','"Jig''s Home",Narol'),
+(1055, 'Harmit','Mitel', '@me.darshan.com', 'Rajkot',' B-55,Raj Residency'),
+(1066, 'Ashok','Jani', NULL, 'Baroda', 'A502, Club House Building')
+
+EXEC SP_RENAME 'STUDENT.FRISTNAME', 'FIRSTNAME'
+
+
+--1 Display the name of students whose name starts with ‘k’.
+SELECT FIRSTNAME FROM STUDENT
+WHERE FIRSTNAME LIKE 'K%';
+
+--2 Display the name of students whose name consists of five characters
+SELECT FIRSTNAME FROM STUDENT
+WHERE FIRSTNAME LIKE '_____';
+
+--3 Retrieve the first name & last name of students whose city name ends with a & contains six characters.
+SELECT FIRSTNAME,LASTNAME FROM STUDENT
+WHERE CITY LIKE '_____a';
+
+--4 Display all the students whose last name ends with ‘tel’.
+SELECT * FROM STUDENT
+WHERE LASTNAME LIKE '%tel';
+
+--5 Display all the students whose first name starts with ‘ha’ & ends with‘t’.
+SELECT * FROM STUDENT
+WHERE FIRSTNAME LIKE 'Ha%t';
+
+--6 Display all the students whose first name starts with ‘k’ and third character is ‘y’.
+SELECT * FROM STUDENT
+WHERE FIRSTNAME LIKE 'K_y%';
+
+--7 Display the name of students having no website and name consists of five characters.
+SELECT FIRSTNAME FROM STUDENT
+WHERE WEBSITE IS NULL AND FIRSTNAME LIKE '_____';
+
+--8 Display all the students whose last name consist of ‘jer’. 
+SELECT * FROM STUDENT
+WHERE LASTNAME LIKE '%jer%';
+
+--9 Display all the students whose city name starts with either ‘r’ or ‘b’.
+SELECT * FROM STUDENT
+WHERE CITY LIKE '[r,b]%';
+
+--10 Display all the name students having websites.
+SELECT * FROM STUDENT
+WHERE WEBSITE IS NOT NULL
+
+--11 Display all the students whose name starts from alphabet A to H.
+SELECT * FROM STUDENT
+WHERE FIRSTNAME LIKE '[A-H]%';
+
+--12 Display all the students whose name’s second character is vowel.
+SELECT * FROM STUDENT
+WHERE FIRSTNAME LIKE '_[A,E,I,O,U]%';
+
+--13 Display the name of students having no website and name consists of minimum five characters.
+SELECT FIRSTNAME FROM STUDENT
+WHERE WEBSITE IS NULL AND FIRSTNAME LIKE '_____%';
+
+--14 Display all the students whose last name starts with ‘Pat’. 
+SELECT * FROM STUDENT
+WHERE LASTNAME LIKE 'Pat%';
+
+--15 Display all the students whose city name does not starts with ‘b’.
+SELECT * FROM STUDENT
+WHERE CITY NOT LIKE 'B%';
+
+--PART_B
+
+
+--1. Display all the students whose name starts from alphabet A or H.
+SELECT * FROM STUDENT
+WHERE FIRSTNAME LIKE '[A,H]%'
+
+--2 Display all the students whose name’s second character is vowel and of and start with H.
+SELECT * FROM STUDENT
+WHERE FIRSTNAME LIKE 'H[AEIOU]%';
+
+--3 Display all the students whose last name does not ends with ‘a’.
+SELECT * FROM STUDENT
+WHERE LASTNAME NOT LIKE '%a';
+
+--4 Display all the students whose first name starts with consonant.
+SELECT * FROM STUDENT
+WHERE FIRSTNAME NOT LIKE '[AEIOU]%';
+
+--5 Display all the students whose website contains .net
+SELECT * FROM STUDENT
+WHERE WEBSITE LIKE '%.net%';
+
+
+--PART_C
+
+
+--1. Display all the students whose address consist of -.
+SELECT * FROM STUDENT
+WHERE ADDRESS LIKE '%-%'
+
+--2. Display all the students whose address contains single quote or double quote.
+SELECT * FROM STUDENT
+WHERE ADDRESS LIKE '%[''"]%'
+                             --OR--
+SELECT * FROM STUDENT
+WHERE ADDRESS LIKE '%''%''%' OR ADDRESS LIKE '%"%"%'
+
+--3. Display all the students whose website contains @.
+SELECT * FROM STUDENT
+WHERE WEBSITE LIKE '%@%'
+
+--4. Display all the names those are either four or five characters.
+SELECT * FROM STUDENT
+WHERE FIRSTNAME LIKE '____' OR FIRSTNAME LIKE '_____'
+
+
+
+--LAB_7--
+
+
+
+--PART_A
+
+CREATE TABLE EMP(
+EID INT ,
+ENAME VARCHAR(20),
+DEPARTMENT VARCHAR(20),
+SALARY INT,
+JOININGDATE DATE,
+CITY VARCHAR(25)
+)
+
+INSERT INTO EMP VALUES 
+(101, 'Rahul', 'Admin', 56000, '1-Jan-1990', 'Rajkot'),
+(102, 'Hardik', 'IT', 18000, '25-Sep-1990', 'Ahmedabad'),
+(103, 'Bhavin', 'HR', 25000, '14-May-1991', 'Baroda'),
+(104, 'Bhoomi', 'Admin', 39000, '8-Feb-1991', 'Rajkot'),
+(105, 'Rohit', 'IT', 17000, '23-Jul-1990', 'Jamnagar'),
+(106, 'Priya', 'IT', 9000, '18-Oct-1990', 'Ahmedabad'),
+(107,'Bhoomi', 'HR', 34000, '25-Dec-1991', 'Rajkot')
+
+
+
+
+--1. Display the Highest, Lowest, Label the columns Maximum, Minimum respectively.
+SELECT 
+MAX(SALARY) AS MAXIMUM_SALARY,
+MIN(SALARY) AS MINIMUM_SALARY
+FROM EMP
+
+--2. Display Total, and Average salary of all employees. Label the columns Total_Sal and Average_Sal,respectively.
+SELECT 
+SUM(SALARY) AS Total_Sal,
+AVG(SALARY) AS Average_Sal
+FROM EMP
+
+--3. Find total number of employees of EMPLOYEE table.
+SELECT COUNT(EID) AS TOTAL_NO_OF_EMPLOYEE FROM EMP
+
+--4. Find highest salary from Rajkot city.
+SELECT MAX(SALARY) AS MAXIMUM_SALARY_OF_RAJKOT FROM EMP 
+WHERE CITY = 'RAJKOT'
+
+--5. Give maximum salary from IT department.
+SELECT MAX(SALARY) AS MAX_SAL_IT FROM EMP WHERE DEPARTMENT = 'IT'
+
+--6. Count employee whose joining date is after 8-feb-91.
+SELECT COUNT(EID) AS NO_OF_EMP_JOIN FROM EMP WHERE JOININGDATE > '08-feb-1991'
+
+--7. Display average salary of Admin department.
+SELECT AVG(SALARY) AS AVG_SAL_ADMIN FROM EMP WHERE DEPARTMENT ='ADMIN'
+
+--8. Display total salary of HR department.
+SELECT SUM(SALARY) AS TOTAl_SAL_HR FROM EMP WHERE DEPARTMENT ='HR'
+
+--9. Count total number of cities of employee without duplication.
+SELECT COUNT(DISTINCT CITY) FROM EMP
+
+--10. Count unique departments.
+SELECT COUNT(DISTINCT DEPARTMENT) FROM EMP
+
+--11. Give minimum salary of employee who belongs to Ahmedabad.
+SELECT MIN(SALARY) AS MIN_SAL FROM EMP WHERE CITY = 'Ahmedabad'
+
+--12. Find city wise highest salary.
+SELECT CITY, MAX(SALARY) AS MAX_SAL_CITYWISE  FROM EMP GROUP BY CITY
+
+--13. Find department wise lowest salary.
+SELECT DEPARTMENT, MIN(SALARY) AS MIN_SAL_DEPARTMENTWISE  FROM EMP GROUP BY DEPARTMENT
+
+--14. Display city with the total number of employees belonging to each city.
+SELECT CITY, COUNT(EID) AS TOTAL_NO_EMP  FROM EMP GROUP BY CITY
+
+--15. Give total salary of each department of EMP table.
+SELECT DEPARTMENT , SUM(SALARY)  TOTAL_SAL_DEPARTMENTWISE  FROM EMP GROUP BY DEPARTMENT 
+
+--16. Give average salary of each department of EMP table without displaying the respective department name.
+SELECT DEPARTMENT , AVG(SALARY)  AVG_SAL_DEPARTMENTWISE  FROM EMP GROUP BY DEPARTMENT 
+
+
+--PART_B--
+
+--1. Count the number of employees living in Rajkot.
+SELECT  COUNT(EID) AS NO_EMP_LIVEIN_RAJKOT FROM EMP WHERE CITY = 'RAJKOT'
+
+--2. Display the difference between the highest and lowest salaries. Label the column DIFFERENCE.
+SELECT (MAX(SALARY)) - (MIN(SALARY)) AS DIFFERENCE FROM EMP 
+
+--3. Display the total number of employees hired before 1st January, 1991
+SELECT COUNT(EID) AS HIRED_AFTER FROM EMP WHERE JOININGDATE < '01-JAN-1991'
+
+
+--PART_C--
+SELECT ENAME ,DEPARTMENT, MAX(SALARY) AS MAX_SAL FROM EMP 
+GROUP BY ENAME,DEPARTMENT
+
+
+1. Count the number of employees living in Rajkot or Baroda.
+2. Display the total number of employees hired before 1st January, 1991 in IT department.
+3. Find the Joining Date wise Total Salaries.
+4. Find the Maximum salary department & city wise in which city name starts with ‘R’.
